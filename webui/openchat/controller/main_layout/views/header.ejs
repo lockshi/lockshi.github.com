@@ -1,0 +1,12 @@
+<%
+var displayBack = typeof(back) !== "undefined" ? back : false;
+var cssClass = typeof(headerClass) !== "undefined" ? headerClass : "ui-header";
+%>
+
+<div class="<%=cssClass%> ui-bar" data-role="header" role="banner">
+	<%if(displayBack){%>
+		<a class="back-btn" href="#" data-icon="arrow-l"></a>
+	<%}%>
+     <h1 class="ui-title"><%=text%></h1>
+     <a href="#" class="ui-btn-right header-assist ui-btn" id="accountButton"></a>
+</div>

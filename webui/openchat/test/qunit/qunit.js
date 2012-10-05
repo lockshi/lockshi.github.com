@@ -1,0 +1,1 @@
+steal("funcunit/qunit", "./spd_test.js");

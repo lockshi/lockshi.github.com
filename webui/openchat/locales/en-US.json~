@@ -1,0 +1,45 @@
+{
+    "nav" : {
+        "back" : "Back",
+        "account" : "Account",
+        "livehelp" : "Live Help"
+    },
+    "global":{
+        "productName" : "Open Chat"
+    },
+    "login" : {
+        "login" : "Login",
+        "userEmail" : "Email address",
+        "company_name" : "$t(home.company_name)",
+        "credentials" : "Password",
+        "loginGenericError" : "$t(global.productName) cannot access your account. Make sure your email address and password are correct and try again.",
+        "noNetwork" : "We can't log you in right now, there is no network available",
+        "loginEmptyEmailOrCredentials" : "You must enter your email address and your password",
+        "loginInvalidEmailAddress" : "This email address has an invalid format",
+        "forgotPassword" : "Forgot Password?",
+        "signUp" : "Sign Up"
+    },
+    "home"  : {
+        "tutorials" : "$t(tutorials.header)",
+        "messages" : "$t(messages.header)",
+        "apps" : "$t(apps.header)",
+        "company_name" : "Radialpoint",
+        "header" : "$t(home.company_name) $t(global.productName)"
+    },
+    "chat" : {
+        "chat" : "Live Help",
+        "invite" : "To start chatting with an agent, type your question below and tap Send.",
+        "liveagent" : "Chat with a live agent",
+        "noagent" : "Sorry, no agent are available at the moment.",
+        "ended" : "Chat session ended",
+        "noNetworkAvailable" : "Live Chat is not currently available, but feel free to call one or our agents for support.",
+        "noNetworkPhone" : "1-800-123-4567",
+        "installLmi" : "Install remote control app",
+        "prompt" : "Type your message here",
+        "send" : "Send",
+        "fail" : "Your message could not be sent. Please try again later or call us at <nobr>$t(chat.noNetworkPhone)<nobr>"
+    },
+    "chatpage" : {
+        "header" : "Live Help"
+    }
+}

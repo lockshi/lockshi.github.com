@@ -1,0 +1,44 @@
+  <div id="tablet_nav">
+    <%==$.View("//openchat/controller/main_layout/views/header",{text:$.t("home.header"),headerClass:"ui-header-tablet"})%>
+	</div>
+ 	<div data-role="panel" id="menu_panel" data-id="menu" data-hash="crumbs" data-context="a#default">
+      <div data-role="page" id="main" data-hash="false">
+
+      	<div data-role="content">
+      	
+      		<div class="menu-option" id="menu-option-chat" data-page="chat-page">
+            	<a href="#" data-panel="main" data-hash="false"><h2><%=$.t("chat.chat")%></h2></a>
+           	</div>
+      		
+		   <div class="menu-option" id="menu-option-tutorials" data-page="tutorials-page">
+				<a href="#" data-panel="main" data-hash="false"> <h2><%=$.t("home.tutorials")%></h2></a>
+		   </div>
+		
+		   <div class="menu-option" id="menu-option-apps" data-page="apps-page">
+				<a href="#" data-panel="main" data-hash="false">  <h2><%=$.t("home.apps")%></h2> </a> </a>
+		   </div>
+           <div class="menu-option" id="menu-option-notifications" data-page="messages-page">
+            <a href="#" data-panel="main" data-hash="false"></a>
+           </div>
+           
+        </div><!-- /content -->
+
+        </div><!-- /page -->
+    </div>
+
+     	
+    <div data-role="panel" data-id="main" id="pages-container">
+        <div data-role="page" id="login-page"></div>
+        <div data-role="page" id="questions-page"></div>
+        <div data-role="page" id="chat-page"></div>
+
+<div data-role="page" id="test-page">
+        <h3> Elements in a list</h3>
+    <ul data-role=listview>
+      <li data-role=list-divider>Menu 1</li>
+      <li><a href=#win1> Window 1 </a></li>
+      <li data-role=list-divider>Menu 2</li>
+      <li><a href=#win2> Window 2 </a></li>
+    </ul></div>
+
+    </div>

@@ -1,0 +1,16 @@
+<div data-role="header" role="banner">
+    <h1><%=$.t("login.company_name")%></h1>
+</div>
+<div data-role="content" id="login-page-content">
+	<form name="login_form" id="login_form">
+	    <label for="login_userEmail"><%= $.t('login.userEmail') %></label>
+		<input type="text" placeholder="<%= $.t('login.userEmail') %>" name="login[userEmail]" id="login_userEmail" value="" />
+	    <label for="login_credentials"><%= $.t('login.credentials') %></label>
+		<input type="text" placeholder="<%= $.t('login.credentials') %>" name="login[credentials]" id="login_credentials" value="" />
+	    <input type="submit" id="login_submit" class="brandButton" data-role="none" value="<%= $.t('login.login') %>"/>
+	</form>
+	<div id="loginLinks">
+		<a id="forgotpassword"><span><%= $.t("login.forgotPassword") %></span></a>
+		<a id="signup"><span><%= $.t("login.signUp") %></span></a>
+	</div> <!-- Close #loginLinks -->
+</div>

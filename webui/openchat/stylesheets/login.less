@@ -1,0 +1,139 @@
+#login_form {
+	/*padding: 30px 0;*/
+	margin-top:40%;
+}
+
+#login-page-content {
+	height: 100%;
+	padding: 30px;
+}
+#login-page{
+   background: none; 
+}
+
+#login_form label {
+	visibility: hidden;
+	display:none;
+}
+
+#login_form input {
+	display:block;
+	.input();
+	/*padding: 0.4em 0px;*/
+	height:auto;
+	width:100%;
+}
+
+
+[data-role=page]{height: 100% !important; position:relative !important;}
+
+#login_form input::-webkit-input-placeholder {
+	color: #cecece;
+}
+
+#error-msg {
+	max-width: 460px;
+	margin: 0 auto;
+	margin-top: 50px;
+	padding: 15px;
+    background-color: #c20009;
+	color: #FFF;
+	text-shadow: 0 1px 0 #333333;
+	font-size: 14px;
+	font-style: italic;
+	-webkit-box-shadow: inset 0 1px 6px rgba(0,0,0,.5);
+	box-shadow: inset 0 1px 6px rgba(0,0,0,.5);
+}
+
+.ui-input-text {
+	-webkit-box-shadow: inset 0 2px 2px rgba(0,0,0,.3);
+	box-shadow: inset 0 2px 2px rgba(0,0,0,.3);
+}
+
+input.ui-input-text, textarea.ui-input-text {
+	font-family: @brandFont;
+	font-size: 16px;
+	text-align: left;
+}
+
+#login_form .disabled_submit {
+	background: #aaaaaa; // Old browsers
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(100%,#aaaaaa), color-stop(67%,#aaaaaa), color-stop(31%,darken(#aaaaaa, 2%)), color-stop(0%,lighten(#aaaaaa, 10%))); // Chrome,Safari4+
+	background: -webkit-linear-gradient(top,  #aaaaaa 100%,#aaaaaa 67%,darken(#aaaaaa, 2%) 31%,lighten(#aaaaaa, 10%) 0%); // Chrome10+,Safari5.1+
+	background: linear-gradient(to bottom, #aaaaaa 100%, #aaaaaa 67%,darken(#aaaaaa, 2%) 31%,lighten(#aaaaaa, 10%) 0%); // W3C
+	-wekbit-box-shadow: @buttonInnerShadow;
+	box-shadow: @buttonInnerShadow;
+	text-shadow: 0 1px 0 #000 !important;
+	color: #FFFFFF;
+	height:36px;
+	margin-top: 20px;
+	width: 100%;
+	border-radius: 6px;
+	-webkit-text-shadow: @1pxDark;
+	text-shadow: @1pxDark;
+	-webkit-box-shadow: @buttonInnerShadow;
+	box-shadow: @buttonInnerShadow;
+	border: 1px solid #c9c9c9;
+	font: normal 15px @brandFont;
+}
+
+#login_form input.brandButton {
+	font-size: 15px;
+	.button();
+	height:60px;
+    /*color: #FFFFFF;*/
+    font-size: 15px;
+    margin-top: 30px;
+    width: 100%;
+	/*border-radius: 6px;
+	-webkit-text-shadow: @1pxDark;
+	text-shadow: @1pxDark;
+	-webkit-box-shadow: @buttonInnerShadow;
+	box-shadow: @buttonInnerShadow;
+	border: solid 1px @accentColor;
+	font-family: @brandFont;
+	font-weight: normal;*/
+}
+
+.ui-btn-hidden {
+	opacity: 1;
+}
+
+.ui-body-c a.ui-link, .ui-body-c a.ui-link:visited {
+	color: @accentColor;
+	text-decoration: none;
+	font-family: @brandFont;
+	font-weight: normal;
+	display: block;
+	margin-top: 16px;
+}
+
+.ui-body-c a.ui-link:hover {
+	color: darken(@accentColor, 15%)
+}
+
+#loginLinks {
+	display: block;
+	font-size: 16px;
+}
+
+#forgotpassword {
+	float: left;
+}
+
+#forgotpassword span {
+	text-align: left;
+	text-decoration: none;
+}
+
+#signup {
+	float: right;
+}
+
+#signup span {
+	text-decoration: none;
+	text-align: right;
+}
+#login_credentials{
+	-webkit-text-security: disc;
+}
