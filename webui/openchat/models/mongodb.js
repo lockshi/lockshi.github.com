@@ -13,6 +13,9 @@ steal(
                 urlParam += (param.limit != undefined) ? "&l=" + param.limit : "";
                 urlParam += (param.single != undefined) ? "&fo=" + param.single : "";
                 return urlParam;
+            },
+            isString : function(obj) {
+                return typeof obj == "string" || (typeof obj == "object" && obj.constructor == String);
             }
         },
         {
@@ -112,6 +115,7 @@ steal(
                       type: "GET",
                       async: false,
                       success: function(results) {
+                        alert(OpenChat.Models.Mongo.isString(results));
                         userRecord = JSON.parse(results);
                       },
                       error: function(XMLHttpRequest, textStatus, errorThrown) {
