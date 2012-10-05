@@ -54,7 +54,10 @@ steal(
                       type: "GET",
                       async: false,
                       success: function(results) {
-                        retVal = results;
+                         retVal = results;
+                       if ( OpenChat.Models.Mongo.isString(results) ) {
+                            retVal = JSON.parse(results);
+                        }
                       },
                       error: function(XMLHttpRequest, textStatus, errorThrown) {
                             alert('error:'  + XMLHttpRequest.status + ':' + textStatus);
@@ -69,7 +72,11 @@ steal(
                       type: "GET",
                       async: true,
                       success: function(results) {
-                        success(JSON.parse(results));
+                            if ( OpenChat.Models.Mongo.isString(results) ) {
+                                results = JSON.parse(results);
+                            }
+
+                            success(results);
                       },
                       error: function(XMLHttpRequest, textStatus, errorThrown) {
                             alert('error:'  + XMLHttpRequest.status + ':' + textStatus);
@@ -83,7 +90,11 @@ steal(
                       type: "GET",
                       async: true,
                       success: function(results) {
-                        success(JSON.parse(results));
+                            if ( OpenChat.Models.Mongo.isString(results) ) {
+                                results = JSON.parse(results);
+                            }
+
+                            success(results);
                       },
                       error: function(XMLHttpRequest, textStatus, errorThrown) {
                             alert('error:'  + XMLHttpRequest.status + ':' + textStatus);
@@ -96,7 +107,11 @@ steal(
                       type: "GET",
                       async: true,
                       success: function(results) {
-                        success(JSON.parse(results));
+                            if ( OpenChat.Models.Mongo.isString(results) ) {
+                                results = JSON.parse(results);
+                            }
+
+                            success(results);
                       },
                       error: function(XMLHttpRequest, textStatus, errorThrown) {
                             alert('error:'  + XMLHttpRequest.status + ':' + textStatus);
@@ -115,8 +130,10 @@ steal(
                       type: "GET",
                       async: false,
                       success: function(results) {
-                        alert(OpenChat.Models.Mongo.isString(results));
-                        userRecord = JSON.parse(results);
+                        userRecord = results;
+                        if ( OpenChat.Models.Mongo.isString(results) ) {
+                            userRecord = JSON.parse(results);
+                        }
                       },
                       error: function(XMLHttpRequest, textStatus, errorThrown) {
                             alert('error:'  + XMLHttpRequest.status + ':' + textStatus);
@@ -132,8 +149,13 @@ steal(
                       type: "POST",
                       contentType: "application/json;charset=utf-8",
                       success: function(results) {
-                        if ( success != undefined)
-                            success(JSON.parse(results));
+                           if ( success != undefined) {
+                               if ( OpenChat.Models.Mongo.isString(results) ) {
+                                    results = JSON.parse(results);
+                                }
+
+                                success(results);
+                            }
                       },
                       error: function(XMLHttpRequest, textStatus, errorThrown) {
                             alert('error:'  + XMLHttpRequest.status + ':' + textStatus);
@@ -149,8 +171,13 @@ steal(
                       type: "PUT",
                       contentType: "application/json;charset=utf-8",
                       success: function(results) {
-                        if ( success != undefined)
-                            success(JSON.parse(results));
+                            if ( success != undefined) {
+                               if ( OpenChat.Models.Mongo.isString(results) ) {
+                                    results = JSON.parse(results);
+                                }
+
+                                success(results);
+                            }
                       },
                       error: function(XMLHttpRequest, textStatus, errorThrown) {
                             alert('error:'  + XMLHttpRequest.status + ':' + textStatus);
@@ -165,8 +192,13 @@ steal(
                       type: "PUT",
                       contentType: "application/json;charset=utf-8",
                       success: function(results) {
-                        if ( success != undefined)
-                            success(JSON.parse(results));
+                         if ( success != undefined) {
+                               if ( OpenChat.Models.Mongo.isString(results) ) {
+                                    results = JSON.parse(results);
+                                }
+
+                                success(results);
+                            }
                       },
                       error: function(XMLHttpRequest, textStatus, errorThrown) {
                             alert('error:'  + XMLHttpRequest.status + ':' + textStatus);
@@ -181,8 +213,13 @@ steal(
                       type: "PUT",
                       contentType: "application/json;charset=utf-8",
                       success: function(results) {
-                        if ( success != undefined)
-                            success(results);
+                            if ( success != undefined) {
+                               if ( OpenChat.Models.Mongo.isString(results) ) {
+                                    results = JSON.parse(results);
+                                }
+
+                                success(results);
+                            }
                       },
                       error: function(XMLHttpRequest, textStatus, errorThrown) {
                             alert('error:'  + XMLHttpRequest.status + ':' + textStatus);
