@@ -23,6 +23,7 @@ steal(
                if (password == user.password)
                {
                   this.CHAT_STATE.isLoggedIn = true;
+                  this.userRecord = user;
                   return true;
                }
 

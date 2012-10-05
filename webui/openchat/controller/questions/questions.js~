@@ -30,13 +30,11 @@ steal(
                 var content = self.element.find(".content");
                 OpenChat.Models.Questions.findAll({}, function(questions){
                     var groupedQuestion = _.groupBy(questions, 'status');
-
                     _.each(self.Class.status, function(status){
                         var questionsList = groupedQuestion[status];
                         if(questionsList && questionsList.length){
                             var statusEl = $(self.view("status", {status: status})).appendTo(content);
                             _.each(questionsList, function(question){
-alert(question.count);
                                 $(self.view("question", question)).appendTo(statusEl);
                             });
                         }else{

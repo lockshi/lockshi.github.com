@@ -101,6 +101,24 @@ steal(
                       } 
                 });
             },
+            findOneSync : function(param, success) {
+                param.single = true;
+                var urlParam = OpenChat.Models.Mongo.getUrlParam(this.url, param);
+                $.ajax( { url: urlParam,
+                      type: "GET",
+                      async: false,
+                      success: function(results) {
+                            if ( OpenChat.Models.Mongo.isString(results) ) {
+                                results = JSON.parse(results);
+                            }
+
+                            success(results);
+                      },
+                      error: function(XMLHttpRequest, textStatus, errorThrown) {
+                            alert('error:'  + XMLHttpRequest.status + ':' + textStatus);
+                      } 
+                });
+            },
             findOneById : function(id, success) {
                 var urlParam = this.urlNoKey + "/" + id + "?apiKey=" + this.apiKey;
                 $.ajax( { url: urlParam,

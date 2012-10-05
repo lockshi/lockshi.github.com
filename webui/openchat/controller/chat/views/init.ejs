@@ -1,20 +1,22 @@
 <%==$.View("//openchat/controller/main_layout/views/header",{text:$.t("messages.header"),back:true})%>
-<div data-role="content" id="messages-page-content">
+<div id="messages-container">
+    <div data-role="content" id="messages-page-content">
 
-	<ul class="repliesList" data-role="listview" data-divider-theme="b" data-inset="true">
-    </ul>
-    <div id="chatFooter">
-        <div data-role="fieldcontain">
-            <fieldset data-role="controlgroup">
-                <label for="sendTextInput">
-                    You Say
-                </label>
-                <input name="" id="sendTextInput" placeholder="" value="" type="text">
-            </fieldset>
+    	<ul class="repliesList" data-role="listview" data-divider-theme="b" data-inset="true">
+        </ul>
+        <div id="chatFooter">
+            <div data-role="fieldcontain">
+                <fieldset data-role="controlgroup">
+                    <label for="sendTextInput">
+                        You Say
+                    </label>
+                    <input name="" id="sendTextInput" placeholder="" value="" type="text">
+                </fieldset>
+            </div>
+
+            <a data-role="button" href="#page1" id="sendButton">
+                Send
+            </a>
         </div>
-
-        <a data-role="button" href="#page1" id="sendButton">
-            Send
-        </a>
     </div>
 </div>

@@ -6,6 +6,7 @@ steal(
     'openchat/lib/utils.js',
     'openchat/models/mongodb.js',
     'openchat/models/mongo_notif.js',
+    'openchat/models/questions.js',
     'openchat/lib3rd/underscore-min.js'
 )
 .then('./views/init.ejs',function(){
@@ -15,6 +16,7 @@ steal(
         $.Controller('Openchat.Controller.Chat',
         /** @Static */
         {
+            lastCount: 0,
             defaults : {
                 user: null,
                 question : null,
@@ -27,8 +29,10 @@ steal(
             init : function(){
                 this.currentState = $.extend({}, this.Class.defaults);
                 this.element.html(this.view("init"));
-                OpenChat.Models.MongoNotif.setPollingFrequency(1000);    
-                this.getActiveQuestion();
+            },
+
+            getURLParameter : function(name) {
+                return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location)||[,""])[1].replace(/\+/g, '%20'))||null;
             },
 
             pagebeforeshow : function(){
@@ -42,6 +46,10 @@ steal(
                 if(window.messagescroll){
                     window.messagescroll.refresh();
                 }
+                OpenChat.Models.MongoNotif.setPollingFrequency(1000);
+
+                var questionId =  this.getURLParameter("q") || null;
+                this.getActiveQuestion(questionId);
             },
 
 		    createScroller : function(){
@@ -64,22 +72,26 @@ steal(
             },
 
             addMessageToUi: function(reply) {
-                $('<li><img src="http://3.bp.blogspot.com/_29ZwqU4Si1w/S8d5Ii_XSzI/AAAAAAAAAAk/oIS-PO3errA/s1600/doofus1.gif"/>' + reply.who + ': ' + reply.answer + '<div class="clear"></div></li>').appendTo($(".repliesList"));
+                var self = this;
+                var picture;
+                var usersDb = new OpenChat.Models.Mongo("users");
+                usersDb.findOneSync({query:{email:reply.who}}, function(results) {
+                   picture = results.picture;
+                });
+
+                $('<li><img src="'+picture+'"/>' + reply.who + ': ' + reply.answer + '<div class="clear"></div></li>').appendTo($(".repliesList"));
                 $('html, body').animate({scrollTop:$(document).height()}, 'slow');
             },
 
             // Returns the first active question
-            getActiveQuestion : function(){
-                var self = this,
-                    questionsDb = new OpenChat.Models.Mongo("questions");
+            getActiveQuestion : function(questionId){
+                var self = this;
 
-                questionsDb.find(
-                    {query:{author:"user@test.com"}},
-                    function(results) {
-                        if(results.length > 0) {
-                            self.currentState.question = results[0];
-                            self.getReplies(self.currentState.question);
-                        }
+                OpenChat.Models.Questions.findOneById(
+                    questionId,
+                    function(result) {
+                        self.currentState.question = result;
+                        self.getReplies(self.currentState.question);
                     }
                 );
             },
@@ -90,20 +102,43 @@ steal(
 
             sendMessage : function(messageText) {
                 var questionsDb = new OpenChat.Models.Mongo("questions");
-                var reply = { "who": "user@test.com", "answer": messageText };
+                var reply = { "who": "user@test.com", "answer": messageText }; 
+                this.currentState.question.count += 1;
                 questionsDb.pushFieldById(
-                    this.currentState.question._id.$oid,
-                    { replies : reply },
+                    this.currentState.question.id,
+                    { replies : reply},
+                    function(results){}
+                );
+
+                //increment count
+                questionsDb.updateOneById(
+                    this.currentState.question.id,
+                    { count : this.currentState.question.count},
                     function(results){}
                 );
                 
                 //TODO: Did any messages show up before we last refreshed? We should update the UI
-
                 this.addMessageToUi(reply);
+
+                lastCount = this.currentState.question.count;
+                OpenChat.Models.MongoNotif.startMonitor(this.currentState.question.id, this.currentState.question.count);
             },
-            "question.reply_message subscribe" : function(question) {
+            "question.reply_message subscribe" : function(event, data) {
                 //add this when you have questionId, count
-                // OpenChat.Models.MongoNotif.startMonitor("506d26c0e4b01f1c93e7d6b5", 1);    
+                var self = this;
+                var count = 1;
+                 _.each(
+                    data.question.replies,
+                    function(reply) 
+                    { 
+                        if (count > lastCount) {
+                            self.addMessageToUi(reply); 
+                        }
+                        count++;
+                    }
+                );
+
+                lastCount = data.question.replies.length;
             }
         });
     }

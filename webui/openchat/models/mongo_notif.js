@@ -19,11 +19,16 @@ steal(
             },
             checkNewReply : function() {
                 var questions = new OpenChat.Models.Mongo("questions");
-                questions.find({query:{ _id:{$oid: qId}, count:{$gt:replyCount} } }, function(results) {
-                    if (results.length > 0) {
+                questions.findOne({query:{ _id:{$oid: qId}, count:{$gt:replyCount} } }, function(results) {
+                    if (results != null) {
                         console.log(results);
-                        replyCount = results[0].count;
-                        OpenAjax.hub.publish("question.reply_message", results);
+                        replyCount = results.count;
+
+                        if ( OpenChat.Models.Mongo.isString(results) ) {
+                            results = JSON.parse(results);
+                        }
+
+                        OpenAjax.hub.publish("question.reply_message", {question: results});
                     }
                 });
             }

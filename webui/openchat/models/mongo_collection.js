@@ -35,6 +35,14 @@ steal(
                     });
                 },
 
+                findOneById : function(id, success) {
+                    var self = this;
+                    mongoDriver.findOneById(id, function(data){
+                        data = fixId(data);
+                        success(new self(data));
+                    })
+                },
+
                 create: function(attrs, success, error){
                     mongoDriver.save(attrs, function(newAttrs){
                         console.log(newAttrs);
