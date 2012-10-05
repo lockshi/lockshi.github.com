@@ -112,7 +112,7 @@ steal(
                       type: "GET",
                       async: false,
                       success: function(results) {
-                        userRecord = results;
+                        userRecord = JSON.parse(results);
                       },
                       error: function(XMLHttpRequest, textStatus, errorThrown) {
                             alert('error:'  + XMLHttpRequest.status + ':' + textStatus);
